@@ -23,8 +23,10 @@ cp .env.example .env
 2. Edit `.env` and set at least:
    - `HOST_ALLOWED_PATH` to the host directory you want opencode to access
    - API key(s) for the provider you use (for example `OPENAI_API_KEY`)
+   - Optional git identity for commits created in-container:
+     - `GIT_AUTHOR_NAME`, `GIT_AUTHOR_EMAIL`
    - `AUTH_PASSWORD` to protect web access
-     - `AUTH_COOKIE_SECRET` to sign auth cookies
+      - `AUTH_COOKIE_SECRET` to sign auth cookies
    - Optional build extras (space-separated):
      - `OPENCODE_EXTRA_NPM_PACKAGES` (example: `pnpm typescript`)
      - `OPENCODE_EXTRA_APT_PACKAGES` (example: `jq ripgrep`)
