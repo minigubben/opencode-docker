@@ -13,6 +13,8 @@ x-opencode-common: &opencode-common
     OPENROUTER_API_KEY: ${OPENROUTER_API_KEY:-}
     GITHUB_TOKEN: ${GITHUB_TOKEN:-}
     OPENCODE_MODEL: ${OPENCODE_MODEL:-}
+    OPENCODE_SERVER_USERNAME: ${OPENCODE_SERVER_USERNAME:-}
+    OPENCODE_SERVER_PASSWORD: ${OPENCODE_SERVER_PASSWORD:-}
   user: "1000:1000"
   working_dir: /home/node/allowed
   volumes:

@@ -8,7 +8,7 @@ Run `opencode` in Docker with explicit host path mounts, plus helper scripts for
 - `docker compose` services for:
   - `opencode-cli` (interactive terminal UI)
   - `opencode-web` (web client)
-- `.env`-driven config for image version, ports, mounted paths, and API credentials
+- `.env`-driven config for image version, ports, mounted paths, API credentials, and web auth
 - Simple scripts to start CLI or web quickly
 
 ## Quick start
@@ -22,6 +22,7 @@ cp .env.example .env
 2. Edit `.env` and set at least:
    - `HOST_ALLOWED_PATH` to the host directory you want opencode to access
    - API key(s) for the provider you use (for example `OPENAI_API_KEY`)
+   - `OPENCODE_SERVER_PASSWORD` to protect web access (recommended for any network exposure)
 
 3. Make scripts executable (once):
 
