@@ -2,6 +2,11 @@ x-opencode-common: &opencode-common
   build:
     context: .
     dockerfile: Dockerfile
+    args:
+      OPENCODE_NPM_PACKAGE: ${OPENCODE_NPM_PACKAGE:-opencode-ai}
+      OPENCODE_NPM_VERSION: ${OPENCODE_NPM_VERSION:-latest}
+      OPENCODE_EXTRA_NPM_PACKAGES: ${OPENCODE_EXTRA_NPM_PACKAGES:-}
+      OPENCODE_EXTRA_APT_PACKAGES: ${OPENCODE_EXTRA_APT_PACKAGES:-}
   image: opencode:local
   env_file:
     - .env
