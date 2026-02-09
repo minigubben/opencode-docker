@@ -11,6 +11,6 @@ mkdir -p \
 
 docker compose --project-directory "$SCRIPT_DIR" up -d --build opencode-web
 
-INTERNAL_PORT="${OPENCODE_WEB_INTERNAL_PORT:-4097}"
+INTERNAL_PORT="${PORT:-4096}"
 MAPPED_PORT="$(docker compose --project-directory "$SCRIPT_DIR" port opencode-web "$INTERNAL_PORT")"
 printf 'Open: http://%s\n' "$MAPPED_PORT"

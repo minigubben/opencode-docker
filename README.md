@@ -41,7 +41,7 @@ chmod +x scripts/*.sh
 ./start-web.sh
 ```
 
-Then open `http://localhost:${OPENCODE_WEB_PORT}` (defaults to `http://localhost:4096`).
+Then open `http://localhost:${PORT}` (defaults to `http://localhost:4096`).
 
 ## Script reference
 
