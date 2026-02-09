@@ -1,0 +1,13 @@
+{
+  "name": "opencode-auth-proxy",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Cookie-auth reverse proxy for opencode-web",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "http-proxy": "^1.18.1"
+  }
+}

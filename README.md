@@ -7,8 +7,9 @@ Run `opencode` in Docker with explicit host path mounts, plus helper scripts for
 - One Docker image built from `opencode-ai` (`npm i -g opencode-ai`)
 - `docker compose` services for:
   - `opencode-cli` (interactive terminal UI)
-  - `opencode-web` (web client)
-- `.env`-driven config for image version, optional extra npm/apt packages, ports, mounted paths, API credentials, and web auth
+  - `opencode-web` (web client, internal)
+  - `auth-proxy` (cookie-authenticated reverse proxy for web access)
+- `.env`-driven config for image version, optional extra npm/apt packages, ports, mounted paths, API credentials, and auth-proxy settings
 - Simple scripts to start CLI or web quickly
 
 ## Quick start
@@ -22,7 +23,8 @@ cp .env.example .env
 2. Edit `.env` and set at least:
    - `HOST_ALLOWED_PATH` to the host directory you want opencode to access
    - API key(s) for the provider you use (for example `OPENAI_API_KEY`)
-   - `OPENCODE_SERVER_PASSWORD` to protect web access (recommended for any network exposure)
+   - `AUTH_PASSWORD` to protect web access
+     - `AUTH_COOKIE_SECRET` to sign auth cookies
    - Optional build extras (space-separated):
      - `OPENCODE_EXTRA_NPM_PACKAGES` (example: `pnpm typescript`)
      - `OPENCODE_EXTRA_APT_PACKAGES` (example: `jq ripgrep`)
@@ -47,10 +49,17 @@ chmod +x scripts/*.sh
 
 Then open `http://localhost:${PORT}` (defaults to `http://localhost:4096`).
 
+You will be redirected to a login page first; after sign-in, the proxy forwards traffic to `opencode-web`.
+
+## Auth behavior
+
+- `auth-proxy` handles login with a password form and stores a signed `HttpOnly` session cookie (`opencode_session`).
+- Set `AUTH_SECURE_COOKIE=true` when accessed over HTTPS.
+
 ## Script reference
 
 - `start-cli.sh` - run CLI service interactively
-- `start-web.sh` - build and start web service in background
+- `start-web.sh` - build and start auth-proxy + web service in background
 - `logs.sh [service]` - follow logs (default `opencode-web`)
 - `stop.sh` - stop all compose services
 
