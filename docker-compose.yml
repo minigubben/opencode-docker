@@ -1,0 +1,38 @@
+x-opencode-common: &opencode-common
+  build:
+    context: .
+    dockerfile: Dockerfile
+  image: opencode:local
+  env_file:
+    - .env
+  environment:
+    TZ: ${TZ:-UTC}
+    OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+    ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
+    GOOGLE_API_KEY: ${GOOGLE_API_KEY:-}
+    OPENROUTER_API_KEY: ${OPENROUTER_API_KEY:-}
+    GITHUB_TOKEN: ${GITHUB_TOKEN:-}
+    OPENCODE_MODEL: ${OPENCODE_MODEL:-}
+  user: "1000:1000"
+  working_dir: /workspace/allowed
+  volumes:
+    - ${HOST_ALLOWED_PATH:-./allowed}:/workspace/allowed
+    - ./opencode-config:/home/node/.config/opencode
+
+services:
+  opencode-cli:
+    <<: *opencode-common
+    stdin_open: true
+    tty: true
+    command: ["."]
+
+  opencode-web:
+    <<: *opencode-common
+    command:
+      - web
+      - --hostname
+      - 0.0.0.0
+      - --port
+      - ${PORT:-4096}
+    ports:
+      - "${PORT:-4096}:${PORT:-4096}"
