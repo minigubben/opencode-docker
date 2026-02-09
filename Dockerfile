@@ -15,7 +15,7 @@ RUN apt-get update \
 RUN npm install -g "${OPENCODE_NPM_PACKAGE}@${OPENCODE_NPM_VERSION}" \
   && opencode --version
 
-WORKDIR /workspace/allowed
+WORKDIR /home/node/allowed
 
 ENTRYPOINT ["opencode"]
 CMD ["--help"]
