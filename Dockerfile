@@ -8,6 +8,8 @@ RUN apt-get update \
     ca-certificates \
     git \
     openssh-client \
+    vim \
+    curl \
   && rm -rf /var/lib/apt/lists/*
 
 RUN npm install -g "${OPENCODE_NPM_PACKAGE}@${OPENCODE_NPM_VERSION}" \

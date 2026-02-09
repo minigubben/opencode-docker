@@ -53,5 +53,8 @@ Then open `http://localhost:${OPENCODE_WEB_PORT}` (defaults to `http://localhost
 ## Notes
 
 - The mounted path is your access control boundary: only mount directories you want available inside the container.
-- Persistent opencode config/credentials are stored in (default `./opencode-config`).
+- Persistent opencode directories are stored on the host by default:
+  - `./opencode-config` -> `/home/node/.config/opencode`
+  - `./opencode-data` -> `/home/node/.local/share/opencode` (includes `auth.json` credentials)
+  - `./opencode-state` -> `/home/node/.local/state/opencode`
 - Container runs as user `1000:1000` to avoid root-owned files on the host.

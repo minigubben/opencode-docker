@@ -1,2 +1,5 @@
 .env
 opencode-config/
+opencode-data/
+opencode-state/
+allowed/
