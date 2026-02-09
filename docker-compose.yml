@@ -14,9 +14,9 @@ x-opencode-common: &opencode-common
     GITHUB_TOKEN: ${GITHUB_TOKEN:-}
     OPENCODE_MODEL: ${OPENCODE_MODEL:-}
   user: "1000:1000"
-  working_dir: /workspace/allowed
+  working_dir: /home/node/allowed
   volumes:
-    - ${HOST_ALLOWED_PATH:-./allowed}:/workspace/allowed
+    - ${HOST_ALLOWED_PATH:-./allowed}:/home/node/allowed
     - ./opencode-config:/home/node/.config/opencode
     - ./opencode-data:/home/node/.local/share/opencode
     - ./opencode-state:/home/node/.local/state/opencode
