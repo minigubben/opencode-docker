@@ -43,6 +43,20 @@ chmod +x scripts/*.sh
 ./start-cli.sh
 ```
 
+Or mount a specific directory for this run:
+
+```bash
+./start-cli.sh .
+```
+
+Optional: add a shell alias so `opencode` always runs in your current directory mount:
+
+```bash
+alias opencode='/absolute/path/to/opencodeDocker/start-cli.sh .'
+```
+
+Add it to `~/.bashrc`, then reload with `source ~/.bashrc`.
+
 5. Start web client:
 
 ```bash
@@ -60,7 +74,7 @@ You will be redirected to a login page first; after sign-in, the proxy forwards 
 
 ## Script reference
 
-- `start-cli.sh` - run CLI service interactively
+- `start-cli.sh [directory] [opencode args...]` - run CLI service interactively; optional first arg overrides mounted host directory for that run
 - `start-web.sh` - build and start auth-proxy + web service in background
 - `logs.sh [service]` - follow logs (default `opencode-web`)
 - `stop.sh` - stop all compose services
