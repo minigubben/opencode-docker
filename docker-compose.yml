@@ -37,6 +37,7 @@ services:
 
   opencode-web:
     <<: *opencode-common
+    restart: unless-stopped
     command:
       - web
       - --hostname
@@ -58,5 +59,6 @@ services:
       AUTH_SECURE_COOKIE: ${AUTH_SECURE_COOKIE:-false}
     depends_on:
       - opencode-web
+    restart: unless-stopped
     ports:
       - "${PORT:-4096}:${PORT:-4096}"

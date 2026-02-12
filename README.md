@@ -82,6 +82,7 @@ You will be redirected to a login page first; after sign-in, the proxy forwards 
 ## Notes
 
 - The mounted path is your access control boundary: only mount directories you want available inside the container.
+- `opencode-web` and `auth-proxy` use `restart: unless-stopped`, so they come back automatically after host or Docker daemon restarts (unless you stopped them manually).
 - Persistent opencode directories are stored on the host by default:
   - `./opencode-config` -> `/home/node/.config/opencode`
   - `./opencode-data` -> `/home/node/.local/share/opencode` (includes `auth.json` credentials)
