@@ -21,7 +21,7 @@ x-opencode-common: &opencode-common
     GIT_AUTHOR_EMAIL: ${GIT_AUTHOR_EMAIL:-}
     OPENCODE_MODEL: ${OPENCODE_MODEL:-}
   user: "1000:1000"
-  working_dir: /home/node/allowed
+  working_dir: ${OPENCODE_WORKDIR:-/home/node/allowed}
   volumes:
     - ${HOST_ALLOWED_PATH:-./allowed}:/home/node/allowed
     - ./opencode-config:/home/node/.config/opencode

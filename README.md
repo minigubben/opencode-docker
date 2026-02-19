@@ -43,11 +43,16 @@ chmod +x scripts/*.sh
 ./start-cli.sh
 ```
 
-Or mount a specific directory for this run:
+Or target a specific directory for this run:
 
 ```bash
 ./start-cli.sh .
 ```
+
+When you pass a directory, `start-cli.sh` tries to preserve shared history with web sessions:
+
+- If the directory is inside `HOST_ALLOWED_PATH`, it keeps the same mount root and only changes the container working directory to `/home/node/allowed/<relative-path>`.
+- If the directory is outside `HOST_ALLOWED_PATH`, it mounts that directory's parent at `/home/node/allowed` and starts in `/home/node/allowed/<dir-name>`.
 
 Optional: add a shell alias so `opencode` always runs in your current directory mount:
 
@@ -74,7 +79,7 @@ You will be redirected to a login page first; after sign-in, the proxy forwards 
 
 ## Script reference
 
-- `start-cli.sh [directory] [opencode args...]` - run CLI service interactively; optional first arg overrides mounted host directory for that run
+- `start-cli.sh [directory] [opencode args...]` - run CLI interactively; optional first arg sets startup directory and preserves `/home/node/allowed/<path>` layout when possible for shared history
 - `start-web.sh` - build and start auth-proxy + web service in background
 - `logs.sh [service]` - follow logs (default `opencode-web`)
 - `stop.sh` - stop all compose services
